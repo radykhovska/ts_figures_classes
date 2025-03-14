@@ -1,7 +1,7 @@
 enum Shape {
-  triangle = `triangle`,
-  circle = `circle`,
-  rectangle = `rectangle`,
+  Triangle = `triangle`,
+  Circle = `circle`,
+  Rectangle = `rectangle`,
 }
 
 type Color = 'red' | 'green' | 'blue';
@@ -13,7 +13,7 @@ export interface Figure {
 }
 
 export class Triangle implements Figure {
-  public shape: Shape = Shape.triangle;
+  public shape: Shape = Shape.Triangle;
 
   constructor(
     public color: Color,
@@ -22,14 +22,15 @@ export class Triangle implements Figure {
     public c: number,
   ) {
     if (a <= 0 || b <= 0 || c <= 0) {
-      throw new Error("Sides of Triangle can't be smaller or equal to 0");
+      throw new Error(`Sides of Triangle must be more than 0`);
     }
 
     const sortedSides = [a, b, c].sort((x, y) => y - x);
 
     if (sortedSides[0] >= sortedSides[1] + sortedSides[2]) {
       throw new Error(
-        "The longest side of a triangle can't be >= than a sum of two others",
+        // eslint-disable-next-line max-len
+        'The longest side of a triangle must be smoller than a sum of two others',
       );
     }
   }
@@ -43,14 +44,14 @@ export class Triangle implements Figure {
 }
 
 export class Circle implements Figure {
-  public shape: Shape = Shape.circle;
+  public shape: Shape = Shape.Circle;
 
   constructor(
     public color: Color,
     public radius: number,
   ) {
     if (radius <= 0) {
-      throw new Error('Radius must be greater than 0');
+      throw new Error('Radius of Circle must be greater than 0');
     }
   }
 
@@ -60,7 +61,7 @@ export class Circle implements Figure {
 }
 
 export class Rectangle implements Figure {
-  public shape: Shape = Shape.rectangle;
+  public shape: Shape = Shape.Rectangle;
 
   constructor(
     public color: Color,
@@ -68,7 +69,7 @@ export class Rectangle implements Figure {
     public length: number,
   ) {
     if (width <= 0 || length <= 0) {
-      throw new Error('Width and length must be greater than 0');
+      throw new Error('Width and length of Rectangle must be greater than 0');
     }
   }
 
